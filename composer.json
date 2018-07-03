@@ -1,0 +1,10 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "curl/curl": "^1.8",
+        "react/event-loop": "^0.5.2",
+        "react/http": "^0.8.3",
+        "phpmailer/phpmailer": "^6.0",
+        "symfony/polyfill-mbstring": "^1.8"
+    }
+}
