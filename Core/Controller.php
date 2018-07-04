@@ -10,7 +10,7 @@ class Controller{
 	public function getRequest()
     {
         if (isset($_POST)){
-            return $_POST;
+            return (object) $_POST;
         }else{
             unset($_GET['path']);
             return $_GET;
