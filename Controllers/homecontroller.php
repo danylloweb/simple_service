@@ -22,6 +22,7 @@ class HomeController extends Controller
 
     /**
      * @return string
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function index()
     {
@@ -39,7 +40,7 @@ class HomeController extends Controller
             'form_params' => [],
         ];
         try {
-            $response = $this->client->request('GET', 'http://api.apigateway.test/psv/airports?limit=99999', $options);
+            $response = $this->client->request('GET', 'http://apigateway.dev/psv/airports?limit=99999', $options);
 
          return $this->response_json($response->getBody());
 
@@ -50,4 +51,6 @@ class HomeController extends Controller
         }
 
     }
+
+
 }

@@ -9,23 +9,24 @@ class Core
 
  protected $currentController;
 
- protected $currentAcition;
+ protected $currentAction;
 
     /**
      * Core constructor.
      */
     public function __construct()
     {
-        $this->currentController = 'homecontroller';
-        $this->currentAcition    = 'index';
-
+//        $this->currentController = 'homecontroller';
+//        $this->currentAction    = 'index';
+        $this->currentController = 'notificationcontroller';
+        $this->currentAction    = 'sendMail';
     }
     /**
      *
      */
     public function handler()
     {
-        call_user_func_array([new $this->currentController(),$this->currentAcition], []);
+        call_user_func_array([new $this->currentController(),$this->currentAction], []);
     }
 }
 
