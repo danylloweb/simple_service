@@ -9,12 +9,11 @@ class Controller{
      */
 	public function getRequest()
     {
-        if (isset($_GET)){
+        if (isset($_POST)){
+            return $_POST;
+        }else{
             unset($_GET['path']);
-           return $_GET;
-        }
-        else{
-            return (object)$_POST;
+            return $_GET;
         }
     }
 
@@ -25,7 +24,7 @@ class Controller{
     public function response_json($data)
     {
         header('Content-Type: application/json');
-        echo $data;
+        echo json_encode(['data'=>$data]);
     }
 }
 
