@@ -9,7 +9,8 @@ class Log
      */
     public function errorLog($errorMessage)
     {
-        $caminho = 'simple-log_'.date('d-m-Y').".txt";
+        $caminho = BASE_PATH . '/Log/simple-log_'.date('d-m-Y').".txt";
+//        die($caminho);
         $fp      = fopen($caminho, "a");
         $errorMessage.= "\n";
         $escreve = fwrite($fp, $errorMessage);

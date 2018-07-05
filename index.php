@@ -2,6 +2,8 @@
 
 require_once 'config.php';
 
+const BASE_PATH = __DIR__;
+
 try {
     spl_autoload_register(function ($class) {
         if (strpos($class, 'controller') > -1) {
