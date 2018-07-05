@@ -7,9 +7,13 @@ require_once 'Core/Controller.php';
  */
 class Core
 {
-
+    /**
+     * @var string
+     */
  protected $currentController;
-
+    /**
+     * @var string
+     */
  protected $currentAction;
 
     /**
@@ -20,8 +24,9 @@ class Core
         $this->currentController = 'notificationcontroller';
         $this->currentAction     = 'sendMail';
     }
+
     /**
-     *
+     * Handler
      */
     public function handler()
     {

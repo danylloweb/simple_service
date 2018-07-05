@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Class NotificationController
+ */
 class NotificationController extends Controller
 {
     /**
@@ -34,10 +36,17 @@ class NotificationController extends Controller
      */
     public function sendMail()
     {
-        $res = $this->mail->sendMail($this->request);
-        $this->response_json([
-            'error' => $res
-        ]);
+        if($this->mail->sendMail($this->request)) {
+            return $this->response_json([
+                'error'   => false,
+                'message' => 'email enviado!'
+            ]);
+        }else{
+            return $this->response_json([
+                'error'   => true,
+                'message' => 'email não enviado!'
+            ]);
+        }
     }
 
 }

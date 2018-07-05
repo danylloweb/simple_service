@@ -3,7 +3,7 @@
 /**
  * Class Controller
  */
-class Controller{
+class Controller {
     /**
      * @return mixed
      */
@@ -28,7 +28,7 @@ class Controller{
     public function response_json($data)
     {
         header('Content-Type: application/json');
-        echo json_encode(['data'=>$data]);
+        echo json_encode(['data' => $data]);
     }
 }
 
