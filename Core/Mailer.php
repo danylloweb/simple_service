@@ -1,9 +1,11 @@
 <?php
 
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+/**
+ * Class Mailer
+ */
 class Mailer extends Log
 {
     /**
@@ -60,7 +62,7 @@ class Mailer extends Log
             $this->mail->addAddress($receipt->email, $receipt->name);     
             $this->mail->addReplyTo($sender->email, $sender->name);
             $this->mail->isHTML(true);                                  // Set email format to HTML
-            $this->mail->Subject = 'Ozymandias | Notificação de error ' . date('d-m-Y H:i:s');
+            $this->mail->Subject = 'Ozymandias | Notificação de erro ' . date('d-m-Y H:i:s');
             $this->mail->Body    = $template;
             $this->mail->send();
             $this->errorLog("[".date('d-m-Y H:i:s')."] Email enviado");

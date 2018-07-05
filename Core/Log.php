@@ -3,7 +3,6 @@
 
 class Log
 {
-
     
     /**
      * @param $errorMessage
