@@ -4,7 +4,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class Mailer
+class Mailer extends Log
 {
     /**
      * @var PHPMailer
@@ -16,7 +16,7 @@ class Mailer
      */
     public function __construct()
     {
-        $this->mail     = new PHPMailer(true);
+        $this->mail = new PHPMailer(true);
     }
 
     /**
@@ -33,8 +33,8 @@ class Mailer
                 'email' => 'ozymandias.mangue3@gmail.com'
             ];
             $receipt = (object) [
-                'name'  => 'Iago Neres',
-                'email' => 'iagoneresb@gmail.com'
+                'name'  => 'Danyllo',
+                'email' => 'danylloferreira@mangue3.com'
             ];
 
             $data->date = date('Y');
@@ -56,33 +56,21 @@ class Mailer
             $this->mail->SMTPSecure = 'tls';                                   
             $this->mail->Port       = 587;                               
             $this->mail->CharSet    = 'UTF-8';
-
-            //Recipients
             $this->mail->setFrom($sender->email, $sender->name);
             $this->mail->addAddress($receipt->email, $receipt->name);     
             $this->mail->addReplyTo($sender->email, $sender->name);
-//          $this->mail->addCC(isset($data['cc']));
-//          $this->mail->addBCC(isset($data['bcc']));
-//          $this->mail->addAttachment('/var/tmp/file.tar.gz');         
-//          $this->mail->addAttachment('/tmp/image.jpg', 'new.jpg');   
-            //Content
             $this->mail->isHTML(true);                                  // Set email format to HTML
             $this->mail->Subject = 'Ozymandias | Notificação de error ' . date('d-m-Y H:i:s');
             $this->mail->Body    = $template;
             $this->mail->send();
-            echo 'Message has been sent';
-            return false;
-        } catch (Exception $e) {
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $this->mail->ErrorInfo;
+            $this->errorLog("[".date('d-m-Y H:i:s')."] Email enviado");
             return true;
+        } catch (Exception $e) {
+            $this->errorLog($this->mail->ErrorInfo);
+            return false;
         }
     }
 
-    public function template()
-    {
-
-    }
 
 
 
