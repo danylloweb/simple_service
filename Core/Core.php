@@ -1,4 +1,5 @@
 <?php
+
 require_once 'Core/Controller.php';
 
 /**
@@ -16,17 +17,15 @@ class Core
      */
     public function __construct()
     {
-//        $this->currentController = 'homecontroller';
-//        $this->currentAction    = 'index';
         $this->currentController = 'notificationcontroller';
-        $this->currentAction    = 'sendMail';
+        $this->currentAction     = 'sendMail';
     }
     /**
      *
      */
     public function handler()
     {
-        call_user_func_array([new $this->currentController(),$this->currentAction], []);
+        call_user_func_array([new $this->currentController(require 'config.php'),$this->currentAction], []);
     }
 }
 

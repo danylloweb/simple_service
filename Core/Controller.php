@@ -9,10 +9,14 @@ class Controller{
      */
 	public function getRequest()
     {
-        if (isset($_POST)){
-            return (object) $_POST;
-        }else{
-            unset($_GET['path']);
+        if(strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') == 0){
+            $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+            if(strcasecmp($contentType, 'application/json') == 0) {
+                $_POST = json_decode(trim(file_get_contents("php://input")));
+            }
+            return $_POST;
+        }
+        else{
             return $_GET;
         }
     }
