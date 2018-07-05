@@ -35,8 +35,8 @@ class Mailer extends Log
                 'email' => 'ozymandias.mangue3@gmail.com'
             ];
             $receipt = (object) [
-                'name'  => 'Danyllo',
-                'email' => 'danylloferreira@mangue3.com'
+                'name'  => 'Patricio',
+                'email' => 'diretoria@elomilhas.com.br'
             ];
 
             $data->date = date('Y');
@@ -64,11 +64,11 @@ class Mailer extends Log
             $this->mail->isHTML(true);                                  // Set email format to HTML
             $this->mail->Subject = 'Ozymandias | Notificação de erro ' . date('d-m-Y H:i:s');
             $this->mail->Body    = $template;
-//            $this->mail->send();
-            $this->errorLog("[".date('d-m-Y H:i:s')."] Email enviado -> " .$data->message." Origem: " .$data->origin." Destino: ". $data->destination);
-            return true;
+            $this->mail->send();
+            $this->errorLog("[".date('d-m-Y H:i:s')."] Email enviado -> " .$data->message.": Origem: " .$data->origin." Destino: ". $data->destination);
+
         } catch (Exception $e) {
-            $this->errorLog("[".date('d-m-Y H:i:s')."] Não Enviado -> ".$data->message." Origem: " .$data->origin." Destino: ". $data->destination);
+            $this->errorLog("[".date('d-m-Y H:i:s')."] Não Enviado -> ".$data->message.": Origem: " .$data->origin." Destino: ". $data->destination);
             return false;
         }
     }
